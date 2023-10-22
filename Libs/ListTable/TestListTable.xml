@@ -1,0 +1,23 @@
+<Ui xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+  <Frame name="TestListTable" inherits="ListTableTemplate" setAllPoints="true">
+    <Scripts>
+      <OnLoad inherit="prepend">
+        self:CreateHeader(
+        "Name",
+        "Name",
+        50,
+        "TextCellTemplate",
+        function(row)
+        return "Test"
+        end)
+        --[[ self:CreateHeader("Name", "Name", 100, "ObjectCellTemplate", function(row) return
+        row.id, row.name end) self:CreateHeader("Location", "Location", 100,
+        "LocationsCellTemplate", function(row) return row.location end) self:CreateHeader("Count",
+        "Count", 100, "CountCellTemplate", function(row) return row.count, row.outof end)
+        self:CreateHeader("%", "Percent", 40, "PercentCellTemplate", function(row) return row.count,
+        row.outof, row.pctstack end) self:CreateRow("ListRowTemplate,PropagateLinks")
+        self:CreateRow("ListRowTemplate,PropagateLinks") ]]
+      </OnLoad>
+    </Scripts>
+  </Frame>
+</Ui>

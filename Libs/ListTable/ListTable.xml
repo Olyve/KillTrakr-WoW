@@ -1,0 +1,129 @@
+<Ui xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+  <Include file="ListTable.lua" />
+  <!--
+-->
+  <Frame name="ListTableTemplate" virtual="true" mixin="ListTableMixin">
+    <Scripts>
+      <!--
+        <OnLoad method="OnLoad"/>
+			<OnMouseEnter method="OnMouseEnter"/>
+			<OnMouseLeave method="OnMouseLeave"/>
+			<OnMouseDown method="OnMouseDown"/>
+			<OnMouseUp method="OnMouseUp"/>
+-->
+    </Scripts>
+  </Frame>
+  <Button name="ListHeaderTemplate" virtual="true" mixin="ListHeaderMixin" parentArray="headers"
+    resizable="true">
+    <Size y="19" />
+    <Anchors>
+      <Anchor point="TOP" />
+    </Anchors>
+    <HitRectInsets left="1" right="1" />
+    <Layers>
+      <Layer level="BACKGROUND">
+        <Texture parentKey="left" file="Interface\FriendsFrame\WhoFrame-ColumnTabs">
+          <Size x="5" y="19" />
+          <Anchors>
+            <Anchor point="TOPLEFT" />
+          </Anchors>
+          <TexCoords left="0" right="0.078125" top="0" bottom="0.59375" />
+        </Texture>
+        <Texture parentKey="right" file="Interface\FriendsFrame\WhoFrame-ColumnTabs">
+          <Size x="4" y="19" />
+          <Anchors>
+            <Anchor point="TOPRIGHT" />
+          </Anchors>
+          <TexCoords left="0.90625" right="0.96875" top="0" bottom="0.59375" />
+        </Texture>
+        <Texture parentKey="middle" file="Interface\FriendsFrame\WhoFrame-ColumnTabs">
+          <Size x="10" y="19" />
+          <Anchors>
+            <Anchor point="LEFT" relativeKey="$parent.left" relativePoint="RIGHT" />
+            <Anchor point="RIGHT" relativeKey="$parent.right" relativePoint="LEFT" />
+          </Anchors>
+          <TexCoords left="0.078125" right="0.90625" top="0" bottom="0.59375" />
+        </Texture>
+      </Layer>
+    </Layers>
+    <ButtonText parentKey="text">
+      <Anchors>
+        <Anchor point="LEFT" x="8" y="0" />
+      </Anchors>
+    </ButtonText>
+    <NormalFont style="GameFontHighlightSmall" />
+    <NormalTexture parentKey="arrow" file="Interface\Buttons\UI-SortArrow">
+      <Size x="9" y="8" />
+      <Anchors>
+        <Anchor point="LEFT" relativeKey="$parent.text" relativePoint="RIGHT" x="3" y="-2" />
+      </Anchors>
+      <TexCoords left="0" right="0.5625" top="0" bottom="1.0" />
+    </NormalTexture>
+    <HighlightTexture file="Interface\PaperDollInfoFrame\UI-Character-Tab-Highlight" alphaMode="ADD">
+      <Size x="5" y="24" />
+      <Anchors>
+        <Anchor point="LEFT" x="0" y="0" />
+        <Anchor point="RIGHT" x="4" y="0" />
+      </Anchors>
+    </HighlightTexture>
+    <Scripts>
+      <OnLoad method="OnLoad" />
+    </Scripts>
+  </Button>
+  <Frame name="ListHeaderSpacerTemplate" virtual="true" mixin="ListHeaderSpacerMixin"
+    parentArray="spacers" enableMouseClicks="true" enableMouseMotion="true">
+    <Size x="2" />
+    <Anchors>
+      <Anchor point="TOP" />
+      <Anchor point="BOTTOM" />
+    </Anchors>
+    <Scripts>
+      <OnLoad method="OnLoad" />
+      <OnEnter method="OnEnter" />
+      <OnLeave method="OnLeave" />
+      <OnMouseDown method="OnMouseDown" />
+      <OnMouseUp method="OnMouseUp" />
+    </Scripts>
+  </Frame>
+  <Frame name="ListRowTemplate" virtual="true" mixin="ListRowMixin" parentArray="rows">
+    <Size y="41" />
+    <Anchors>
+      <Anchor point="LEFT" />
+      <Anchor point="RIGHT" />
+    </Anchors>
+    <Scripts>
+      <OnLoad method="OnLoad" />
+    </Scripts>
+  </Frame>
+  <Frame name="ListCellTemplate" virtual="true" mixin="ListCellMixin" parentArray="cells">
+    <Anchors>
+      <Anchor point="TOP" />
+      <Anchor point="BOTTOM" />
+    </Anchors>
+    <Scripts>
+      <OnLoad method="OnLoad" />
+    </Scripts>
+  </Frame>
+  <Frame name="TextCellTemplate" virtual="true" inherits="ListCellTemplate" mixin="TextCellMixin">
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString parentKey="text" font="GameFontHighlightLarge" wordwrap="true" maxLines="3">
+          <Anchors>
+            <Anchor point="TOPLEFT" x="1" y="-1" />
+            <Anchor point="BOTTOMRIGHT" x="-1" y="1" />
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+  </Frame>
+  <Frame name="LeftTextCellTemplate" virtual="true" inherits="TextCellTemplate">
+    <KeyValues>
+      <KeyValue key="justifyH" value="LEFT" />
+    </KeyValues>
+  </Frame>
+  <Frame name="RightTextCellTemplate" virtual="true" inherits="TextCellTemplate">
+    <KeyValues>
+      <KeyValue key="justifyH" value="RIGHT" />
+    </KeyValues>
+  </Frame>
+</Ui>
