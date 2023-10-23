@@ -30,6 +30,16 @@ function KillTrakr:Init()
 
   -- Set up UI Window
   KillTrakr:InitWindow()
+
+  -- Set up slash commands
+  SLASH_KILLTRAKR1, SLASH_KILLTRAKR2 = '/ktr', '/killtrakr'
+  SlashCmdList["KILLTRAKR"] = function()
+    if KillTrakr.frame:IsShown() then
+      KillTrakr.frame:Hide()
+    else
+      KillTrakr.frame:Show()
+    end
+  end
 end
 
 function KillTrakr:Print(...)
