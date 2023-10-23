@@ -40,6 +40,9 @@
     "SetItemButtonTexture",
     "GetCursorPosition",
     "SetItemButtonCount",
-    "HIGHLIGHT_FONT_COLOR"
+    "HIGHLIGHT_FONT_COLOR",
+    "BACK",
+    "BACKDROP_TUTORIAL_16_16",
+    "DEFAULT"
   ]
 }

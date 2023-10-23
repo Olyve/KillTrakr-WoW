@@ -2,14 +2,11 @@
 ## Version: 1.0
 ## Author: Olyve
 ## Interface: 100107
-## SavedVariables: KillTrakrDB
-## OptionalDeps: Ace3
+## SavedVariables: KillTrakrCoreDB
+## SavedVariablesPerCharacter: KillTrakr_Kills
 
-# Libraries
-embeds.xml
-
+# Third Party Libs
+Libs\ListTable\ListTable.lua
+Libs\ListTable\ListTable.xml
 
 Core.lua
-DB.lua
-Events\CombatEventHandler.lua
-UI\MainWindow.lua
