@@ -1,0 +1,148 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+	<Include file="Cells.lua"/>
+
+	<Frame name="ItemButtonCellTemplate" virtual="true" inherits="ListCellTemplate,PropagateLinks" mixin="ItemButtonCellMixin">
+		<Frames>
+			<ItemButton parentKey="button">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="2" y="-2" />
+				</Anchors>
+			</ItemButton>
+		</Frames>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="label" font="GameFontHighlightLarge" justifyH="LEFT" wordwrap="true" maxLines="2">
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent.button" relativePoint="RIGHT" x="3" />
+						<Anchor point="RIGHT" x="-1" relativePoint="RIGHT" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="ItemsTemplate" virtual="true" mixin="ItemsMixin" />
+
+	<Frame name="ItemsCellTemplate" virtual="true" inherits="ListCellTemplate" mixin="ItemsCellMixin" clipChildren="true">
+		<Frames>
+			<Frame parentKey="items" inherits="ItemsTemplate">
+				<Anchors>
+					<Anchor point="CENTER" />
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+
+	<Frame name="SkillCellTemplate" virtual="true" inherits="TextCellTemplate" mixin="SkillCellMixin">
+		<KeyValues>
+			<KeyValue key="font" value="GameFontHighlightSmall" />
+		</KeyValues>
+	</Frame>
+
+	<Frame name="ObjectCellTemplate" virtual="true" inherits="LeftTextCellTemplate,PropagateLinks" mixin="ObjectCellMixin" />
+
+	<Frame name="LocationsCellTemplate" virtual="true" inherits="TextCellTemplate,PropagateLinks" mixin="LocationsCellMixin" />
+
+	<Frame name="CountCellTemplate" virtual="true" inherits="ListCellTemplate" mixin="CountCellMixin">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="count" font="GameFontHighlightLarge">
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="CENTER" />
+					</Anchors>
+				</FontString>
+				<FontString parentKey="outof" font="GameFontHighlight">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="CENTER" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="PercentCellTemplate" virtual="true" inherits="TextCellTemplate" mixin="PercentCellMixin">
+		<!--
+		<Layers>
+			<Layer level="ARTWORK">
+				<Line thickness="1">
+					<StartAnchor relativePoint="BOTTOMLEFT" />
+					<EndAnchor relativePoint="BOTTOMRIGHT" />
+					<Color r="1" g="1" b="1" />
+				</Line>
+			</Layer>
+		</Layers>
+		-->
+		<Frames>
+			<Frame>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.text" />
+					<Anchor point="BOTTOMRIGHT" relativeKey="$parent.text" />
+				</Anchors>
+				<!--
+				<Scripts>
+					<OnEnter method="OnEnter"/>
+					<OnLeave method="OnLeave"/>
+				</Scripts>
+				-->
+			</Frame>
+		</Frames>
+	</Frame>
+
+	<Frame name="NPCCellTemplate" virtual="true" inherits="ListCellTemplate,PropagateLinks" mixin="NPCCellMixin">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="name" font="GameFontHighlightLarge" />
+				<FontString parentKey="tag" font="GameFontHighlight" hidden="true">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="CENTER" />
+						<Anchor point="LEFT" x="2" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="ReactCellTemplate" virtual="true" inherits="TextCellTemplate" mixin="ReactCellMixin" />
+
+	<Frame name="NPCLevelCellTemplate" virtual="true" inherits="ListCellTemplate" mixin="NPCLevelCellMixin">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="level" font="GameFontHighlightLarge" />
+				<FontString parentKey="classification" font="GameFontHighlight" hidden="true">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="CENTER" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="QuestCellTemplate" virtual="true" inherits="ListCellTemplate,PropagateLinks" mixin="QuestCellMixin">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="name" font="GameFontHighlightLarge" />
+				<FontString parentKey="tag" font="GameFontHighlight" hidden="true">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="CENTER" />
+						<Anchor point="LEFT" x="2" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="QuestLevelCellTemplate" virtual="true" inherits="ListCellTemplate" mixin="QuestLevelCellMixin">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="level" font="GameFontHighlightLarge" />
+				<FontString parentKey="classification" font="GameFontHighlight" hidden="true">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="CENTER" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="MoneyCellTemplate" virtual="true" inherits="TextCellTemplate" mixin="MoneyCellMixin" />
+</Ui>
