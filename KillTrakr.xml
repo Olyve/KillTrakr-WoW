@@ -19,14 +19,34 @@
       <Layer level="OVERLAY">
         <FontString parentKey="TitleText" font="GameFontHighlightLarge" text="KillTrakr">
           <Anchors>
-            <Anchor point="TOP" relativeKey="TitleBg" x="0" y="-4" />
+            <Anchor point="TOP" relativeKey="$parent.TitleBg" x="0" y="-4" />
           </Anchors>
         </FontString>
       </Layer>
     </Layers>
-    <Frames>
+  </Frame>
 
-    </Frames>
+  <Frame parent="KillTrakr" parentKey="Table" mixin="KillTrakrTableMixin"
+    inherits="ListTableTemplate">
+    <Scripts>
+      <OnLoad method="OnLoad" />
+    </Scripts>
+  </Frame>
+
+  <Frame name="KillTrakrCellTemplate" virtual="true" inherits="ListCellTemplate"
+    mixin="TextCellMixin">
+    <KeyValues>
+      <KeyValue key="justifyH" value="LEFT" />
+    </KeyValues>
+    <Layers>
+      <Layer level="ARTWORK">
+        <FontString parentKey="text" font="GameFontHighlightLarge" wordwrap="true" maxLines="2">
+          <Anchors>
+            <Anchor point="TOPLEFT" x="7" y="-1" />
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
   </Frame>
 
 </Ui>

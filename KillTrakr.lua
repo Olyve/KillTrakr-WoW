@@ -25,19 +25,15 @@ end
 
 KillTrakrMixin = {}
 
-function KillTrakrMixin:Init()
-  -- Set up initial SVs if we don't have any
-  if KillTrakrDB == nil then
-    KillTrakrDB = {}
-  end
-
-  -- Set up UI Window
-  -- KillTrakr:InitWindow()
-end
-
 function KillTrakrMixin:Print(...)
   local prefix = string.format("|cff%s%s|r", "E91E63", "KillTrakr:")
   DEFAULT_CHAT_FRAME:AddMessage(string.join(" ", prefix, ...))
+end
+
+function KillTrakrMixin:Init()
+  if KillTrakrDB == nil then
+    KillTrakrDB = {}
+  end
 end
 
 function KillTrakrMixin:HandleCombatEvent()
@@ -60,7 +56,7 @@ function KillTrakrMixin:HandleCombatEvent()
       tinsert(KillTrakrDB, record)
       self:Print(destName .. " - " .. record.kills .. " kills")
     end
-    --KillTrakr.frame.listTable:SetData(KillTrakrDB)
+    self.Table:SetData(KillTrakrDB)
   end
 end
 
@@ -68,61 +64,41 @@ function KillTrakrMixin:OnLoad()
   self:RegisterEvent("ADDON_LOADED")
   self:RegisterEvent("PLAYER_LOGIN")
   self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-
-  -- local title = self:CreateFontString("KillTrakr_Title", "OVERLAY", "GameFontHighlightLarge")
-  -- title:SetPoint("CENTER", self.TitleBg, 0, -1)
-  -- title:SetText("KillTrakr")
 end
 
 function KillTrakrMixin:OnEvent(event, arg1, ...)
   if event == "ADDON_LOADED" and arg1 == "KillTrakr" then
     self:Init()
+  elseif event == "PLAYER_LOGIN" then
+    if KillTrakrDB ~= nil then
+      self.Table:SetData(KillTrakrDB)
+    end
   elseif event == "COMBAT_LOG_EVENT_UNFILTERED" then
     self:HandleCombatEvent()
   end
 end
 
-function KillTrakrMixin:InitWindow()
-  local f = KillTrakr.frame
-  f:SetPoint("CENTER")
-  f:SetSize(500, 500)
-  f:SetClampedToScreen(true)
-  f:SetMovable(true)
+KillTrakrTableMixin = {}
 
-  -- Set Title
-  f.title = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightLarge")
-  f.title:SetPoint("CENTER", f.TitleBg, 0, -1)
-  f.title:SetText("KillTrakr")
-
-  -- Scripts
-  f:SetScript("OnMouseDown", function(self, button)
-    self:StartMoving()
-  end)
-  f:SetScript("OnMouseUp", function(self, button)
-    self:StopMovingOrSizing()
-  end)
-
-  -- Try adding ListTable
-  f.listTable = CreateFrame("Frame", "KillTrakrUI_Table", f, "ListTableTemplate")
-  f.listTable:SetPoint("CENTER", f.InsetBg, "CENTER")
-  f.listTable:SetSize(f.InsetBg:GetWidth(), f.InsetBg:GetHeight())
-  f.listTable:CreateHeader("Name", "Name", 150, "TextCellTemplate", function(row)
+function KillTrakrTableMixin:OnLoad()
+  self:SetPoint("CENTER", KillTrakr.InsetBg, "CENTER")
+  self:SetSize(KillTrakr.InsetBg:GetWidth(), KillTrakr.InsetBg:GetHeight())
+  self:CreateHeader("Name", "Name", 150, "KillTrakrCellTemplate", function(row)
     return row.name
   end)
-  f.listTable:CreateHeader("Kills", "Kills", 50, "TextCellTemplate", function(row)
+  self:CreateHeader("Kills", "Kills", 50, "KillTrakrCellTemplate", function(row)
     return row.kills
   end)
 
   -- Add a few test rows
-  f.listTable:CreateRow()
-  f.listTable:CreateRow()
-  f.listTable:CreateRow()
-  f.listTable:CreateRow()
-  f.listTable:CreateRow()
-  f.listTable:CreateRow()
-  f.listTable:CreateRow()
-  f.listTable:CreateRow()
-  f.listTable:CreateRow()
-  f.listTable:CreateRow()
-  f.listTable:SetData(KillTrakrDB)
+  self:CreateRow()
+  self:CreateRow()
+  self:CreateRow()
+  self:CreateRow()
+  self:CreateRow()
+  self:CreateRow()
+  self:CreateRow()
+  self:CreateRow()
+  self:CreateRow()
+  self:CreateRow()
 end
