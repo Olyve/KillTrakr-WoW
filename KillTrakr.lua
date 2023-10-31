@@ -81,12 +81,11 @@ end
 KillTrakrTableMixin = {}
 
 function KillTrakrTableMixin:OnLoad()
-  self:SetPoint("CENTER", KillTrakr.InsetBg, "CENTER")
-  self:SetSize(KillTrakr.InsetBg:GetWidth(), KillTrakr.InsetBg:GetHeight())
-  self:CreateHeader("Name", "Name", 150, "KillTrakrCellTemplate", function(row)
+  self:SetPoint("CENTER", KillTrakr)
+  self:CreateHeader("Name", "Name", 200, "KillTrakrCellTemplate", function(row)
     return row.name
   end)
-  self:CreateHeader("Kills", "Kills", 50, "KillTrakrCellTemplate", function(row)
+  self:CreateHeader("Kills", "Kills", 50, "TextCellTemplate", function(row)
     return row.kills
   end)
 
