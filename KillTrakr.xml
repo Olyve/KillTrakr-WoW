@@ -3,7 +3,7 @@
 
   <Include file="KillTrakr.lua" />
 
-  <Frame name="KillTrakr" parent="UIParent" frameStrata="DIALOG" clampedToScreen="true"
+  <Frame name="KillTrakr" parent="UIParent" frameStrata="MEDIUM" clampedToScreen="true"
     movable="true" mixin="KillTrakrMixin,TitledPanelMixin"
     inherits="BasicFrameTemplate">
     <Size x="500" y="500" />
@@ -29,6 +29,13 @@
 
   <!-- Table and Cell Templates -->
 
+  <Button name="KillTrakrHeaderTemplate" virtual="true" inherits="ListHeaderTemplate"
+    mixin="KillTrakrHeaderMixin">
+    <Scripts>
+      <OnClick method="OnClick" />
+    </Scripts>
+  </Button>
+
   <Frame name="KillTrakrCellTemplate" virtual="true" inherits="ListCellTemplate"
     mixin="TextCellMixin">
     <KeyValues>
@@ -51,7 +58,7 @@
     inherits="ListTableTemplate">
     <Anchors>
       <Anchor point="TOPLEFT" x="4" y="-24" />
-      <Anchor point="BOTTOMRIGHT" x="-6" y="4" />
+      <Anchor point="BOTTOMRIGHT" x="-6" y="25" />
     </Anchors>
     <Scripts>
       <OnLoad method="OnLoad" />
@@ -64,4 +71,28 @@
     </Layers>
   </Frame>
 
+  <!-- Pagination Buttons -->
+  <Button parent="KillTrakr" parentKey="Prev" inherits="UIPanelButtonTemplate"
+    mixin="KillTrakrPaginationMixin">
+    <Size x="75" y="25" />
+    <Anchors>
+      <Anchor point="BOTTOMLEFT" x="2" y="2" />
+    </Anchors>
+    <ButtonText text="Previous" />
+    <Scripts>
+      <OnClick method="PreviousPage" />
+    </Scripts>
+  </Button>
+
+  <Button parent="KillTrakr" parentKey="Next" inherits="UIPanelButtonTemplate"
+    mixin="KillTrakrPaginationMixin">
+    <Size x="75" y="25" />
+    <Anchors>
+      <Anchor point="BOTTOMRIGHT" x="-2" y="2" />
+    </Anchors>
+    <ButtonText text="Next" />
+    <Scripts>
+      <OnClick method="NextPage" />
+    </Scripts>
+  </Button>
 </Ui>

@@ -35,9 +35,13 @@ end
 function ListTableMixin:SetData(data)
   self.data = data
   self.offset = self.offset or 0
+  self:UpdateRows()
+end
+
+function ListTableMixin:UpdateRows()
   local i
   for i = 1, #self.rows do
-    local row, row_data = self.rows[i], data[i + self.offset]
+    local row, row_data = self.rows[i], self.data[i + self.offset]
     row:SetShown(row_data)
     if row_data then
       row:Set(row_data)
@@ -45,13 +49,31 @@ function ListTableMixin:SetData(data)
   end
 end
 
-function ListTableMixin:CreateHeader(text, nameInfix, width, cellTemplate, selector)
+-- should sort asecdening by default based on the header name
+-- which should correspond to the data field in the table value
+-- Ex: if header is `name`, should look for a.name and compare
+-- to b.name
+function ListTableMixin:SortData(header, desc)
+  if desc == nil or desc == false then
+    table.sort(self.data, function(a, b)
+      return a[header] < b[header]
+    end)
+  else
+    table.sort(self.data, function(a, b)
+      return a[header] > b[header]
+    end)
+  end
+  self:UpdateRows()
+end
+
+function ListTableMixin:CreateHeader(text, nameInfix, width, cellTemplate, selector, sorter)
   local header = CreateFrame("Button", nameInfix and self:GetName() and self:GetName() .. nameInfix .. "Header", self,
     self.headerTemplate or "ListHeaderTemplate")
   if text then header:SetText(text) end
   if width and not header:IsUserPlaced() then header:SetWidth(width) end
   header.cellTemplate = header.cellTemplate or cellTemplate
   header.selector = header.selector or selector
+  header.sorter = header.sorter or sorter
   local spacer = CreateFrame("Frame", nil, self, "ListHeaderSpacerTemplate")
 end
 
