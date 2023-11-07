@@ -2,7 +2,7 @@
 ## Version: 1.0
 ## Author: Olyve
 ## Interface: 100107
-## SavedVariables: KillTrakrCoreDB
+## SavedVariables: KillTrakrOptions
 ## SavedVariablesPerCharacter: KillTrakrDB
 
 # Third Party Libs
