@@ -97,4 +97,20 @@
       <OnClick method="NextPage" />
     </Scripts>
   </Button>
+
+  <Frame parent="KillTrakr" parentKey="Pages">
+    <Size x="100" y="25" />
+    <Anchors>
+      <Anchor point="BOTTOM" y="2" />
+    </Anchors>
+    <Layers>
+      <Layer level="OVERLAY">
+        <FontString parentKey="PagesText" font="GameFontHighlightLarge" text="Page ">
+          <Anchors>
+            <Anchor point="CENTER" />
+          </Anchors>
+        </FontString>
+      </Layer>
+    </Layers>
+  </Frame>
 </Ui>

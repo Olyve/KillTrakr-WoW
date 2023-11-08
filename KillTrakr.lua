@@ -41,10 +41,13 @@ end
 function KillTrakrMixin:Init()
   self.data = KillTrakrDB or {}
   self.options = KillTrakrOptions or defaultOptions
+  self.currentPage = 1
 
   if self.options.isShown then
     self:Show()
   end
+
+  self:SetPages()
 end
 
 function KillTrakrMixin:Commit()
@@ -104,7 +107,14 @@ function KillTrakrMixin:HandleCombatEvent()
       }
       tinsert(KillTrakrDB, record)
     end
-    self:Print(destName .. "(" .. record.type .. ") - " .. record.kills .. " kills")
+    self:Print(destName .. "(" .. (record.type or "unknown") .. ") - " .. record.kills .. " kills")
     self.Table:SetData(KillTrakrDB)
   end
+end
+
+function KillTrakrMixin:SetPages()
+  local totalPages = math.floor(#self.data / 10) + 1
+  local currentPage = self.currentPage or 1
+
+  self.Pages.PagesText:SetText(string.format("Page %i/%i", currentPage, totalPages))
 end

@@ -54,8 +54,10 @@ function KillTrakrPaginationMixin:PreviousPage()
     table.offset = 0
   else
     table.offset = table.offset - 10
+    KillTrakr.currentPage = KillTrakr.currentPage - 1
   end
   table:UpdateRows();
+  KillTrakr:SetPages()
 end
 
 function KillTrakrPaginationMixin:NextPage()
@@ -65,6 +67,8 @@ function KillTrakrPaginationMixin:NextPage()
     return
   else
     table.offset = table.offset + 10
+    KillTrakr.currentPage = KillTrakr.currentPage + 1
   end
   table:UpdateRows();
+  KillTrakr:SetPages()
 end
